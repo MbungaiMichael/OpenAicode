@@ -1,0 +1,4 @@
+# Local recordings / media (not project code)
+*.mp4
+*.mov
+*.avi
