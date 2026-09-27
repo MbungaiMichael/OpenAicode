@@ -1,0 +1,171 @@
+// Phase 0 schema — SQLite for local dev.
+// Production (Supabase): change provider to "postgresql" and set DATABASE_URL to Supabase pooled URL.
+// Models map to PRD.md §1.5 Data Model.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  patient
+  caregiver
+  translator
+  coordinator
+  admin
+}
+
+enum RequestType {
+  translator
+  coordinator
+  appointment
+  cost_estimate
+  support
+}
+
+enum RequestStatus {
+  new
+  assigned
+  done
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  passwordHash String @default("")
+  phone     String?
+  country   String   @default("")
+  language  String   @default("en")
+  role      Role     @default(patient)
+  createdAt DateTime @default(now())
+
+  requests  AssistanceRequest[] @relation("PatientRequests")
+  assigned  AssistanceRequest[] @relation("AssigneeRequests")
+  documents MedicalDocument[]
+  ratings   Rating[]
+  teleconsults Teleconsult[]
+  reminders Reminder[]
+}
+
+model Hospital {
+  id           String   @id @default(uuid())
+  name         String
+  city         String
+  state        String   @default("")
+  address      String
+  lat          Float?
+  lng          Float?
+  phone        String   @default("")
+  specialties  String   @default("[]")
+  services     String   @default("[]")
+  facilities   String   @default("[]")
+  images       String   @default("[]")
+  createdAt    DateTime @default(now())
+
+  requests AssistanceRequest[]
+  estimates CostEstimate[]
+}
+
+model AssistanceRequest {
+  id              String        @id @default(uuid())
+  patientId       String
+  patient         User          @relation("PatientRequests", fields: [patientId], references: [id], onDelete: Cascade)
+  type            RequestType
+  languageNeeded  String        @default("")
+  hospitalId      String?
+  hospital        Hospital?     @relation(fields: [hospitalId], references: [id])
+  specialty       String        @default("")
+  message         String
+  status          RequestStatus @default(new)
+  assigneeId      String?
+  assignee        User?         @relation("AssigneeRequests", fields: [assigneeId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  estimates CostEstimate[]
+  documents MedicalDocument[]
+  rating    Rating?
+}
+
+model Treatment {
+  id                String   @id @default(uuid())
+  title             String   @unique
+  descriptionSimple String
+  procedureSteps    String   @default("[]")
+  avgStay           String   @default("")
+  risks             String   @default("[]")
+  createdAt         DateTime @default(now())
+
+  estimates CostEstimate[]
+}
+
+model CostEstimate {
+  id          String   @id @default(uuid())
+  requestId   String
+  request     AssistanceRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  treatmentId String
+  treatment   Treatment @relation(fields: [treatmentId], references: [id])
+  hospitalId  String
+  hospital    Hospital  @relation(fields: [hospitalId], references: [id])
+  minCost     Float
+  maxCost     Float
+  currency    String   @default("USD")
+  notes       String   @default("")
+  disclaimer  String   @default("Estimate only — not a guarantee of cost or availability.")
+  createdAt   DateTime @default(now())
+}
+
+model MedicalDocument {
+  id        String   @id @default(uuid())
+  patientId String
+  patient   User     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  requestId String?
+  request   AssistanceRequest? @relation(fields: [requestId], references: [id])
+  fileUrl   String
+  label     String   @default("")
+  createdAt DateTime @default(now())
+}
+
+model Rating {
+  id        String   @id @default(uuid())
+  requestId String   @unique
+  request   AssistanceRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  patientId String
+  patient   User     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  score     Int
+  createdAt DateTime @default(now())
+}
+
+model Teleconsult {
+  id          String   @id @default(uuid())
+  patientId   String
+  patient     User     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  hospitalId  String?
+  specialty   String   @default("")
+  preferredAt String   @default("")
+  notes       String   @default("")
+  status      RequestStatus @default(new)
+  createdAt   DateTime @default(now())
+}
+
+model Reminder {
+  id        String   @id @default(uuid())
+  patientId String
+  patient   User     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  title     String
+  dueAt     String   @default("")
+  done      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model NotificationLog {
+  id        String   @id @default(uuid())
+  userId    String
+  kind      String
+  message   String
+  createdAt DateTime @default(now())
+}
