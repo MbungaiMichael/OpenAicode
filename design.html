@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design System — International Patient Assistance Platform</title>
+<style>
+:root{
+  --color-primary-500:#2563EB; --color-primary-600:#1D4ED8;
+  --color-success-500:#22C55E; --color-success-100:#DCFCE7;
+  --color-warning-500:#F59E0B; --color-error-500:#EF4444;
+  --color-neutral-900:#0F172A; --color-neutral-600:#475569; --color-neutral-400:#94A3B8;
+  --color-neutral-200:#E2E8F0; --color-neutral-100:#F1F5F9; --color-neutral-50:#F8FAFC;
+  --font-sans:'Inter',system-ui,-apple-system,sans-serif;
+  --radius-md:8px; --radius-lg:12px; --radius-full:9999px;
+  --shadow-md:0 4px 6px -1px rgb(0 0 0 / .1); --shadow-lg:0 10px 15px -3px rgb(0 0 0 / .1);
+}
+*{box-sizing:border-box} body{margin:0;font-family:var(--font-sans);background:var(--color-neutral-50);color:var(--color-neutral-900)}
+.wrap{max-width:960px;margin:0 auto;padding:32px 16px}
+h1{font-size:1.875rem;margin:0 0 4px} .sub{color:var(--color-neutral-600);margin:0 0 24px}
+h2{font-size:1.25rem;margin:32px 0 12px;border-bottom:1px solid var(--color-neutral-200);padding-bottom:8px}
+.card{background:#fff;border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:20px;margin:12px 0}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.swatch{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--color-neutral-200);background:#fff}
+.swatch div:first-child{height:56px} .swatch div:last-child{padding:8px 10px;font-size:.8rem}
+.btn{display:inline-block;border:0;border-radius:var(--radius-md);padding:10px 18px;font-weight:600;cursor:pointer}
+.btn-primary{background:var(--color-primary-600);color:#fff} .btn-outline{background:#fff;border:1px solid var(--color-primary-500);color:var(--color-primary-600)}
+.badge{display:inline-block;padding:4px 12px;border-radius:var(--radius-full);font-size:.75rem;font-weight:600}
+.b-new{background:#DBEAFE;color:#1D4ED8} .b-assigned{background:#FEF3C7;color:#92400E} .b-done{background:var(--color-success-100);color:#15803D}
+.chip{display:inline-block;background:var(--color-neutral-100);border-radius:var(--radius-full);padding:4px 12px;font-size:.8rem;margin:2px}
+.input{width:100%;padding:10px 12px;border:1px solid var(--color-neutral-200);border-radius:var(--radius-md);margin:6px 0}
+.disclaimer{background:#FFFBEB;border:1px solid #FDE68A;border-radius:var(--radius-md);padding:12px;font-size:.85rem;margin-top:12px}
+.steps{list-style:none;padding:0;margin:8px 0} .steps li{padding:8px 0 8px 28px;position:relative;border-left:2px solid var(--color-neutral-200);margin-left:8px}
+.steps li::before{content:'';position:absolute;left:-7px;top:12px;width:12px;height:12px;border-radius:50%;background:var(--color-primary-500)}
+.stars{color:#F59E0B;font-size:1.2rem;letter-spacing:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px} @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+small{color:var(--color-neutral-600)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Design System Preview</h1>
+  <p class="sub">International Patient Assistance Platform — from <code>PRD.md §2.4</code> tokens</p>
+
+  <h2>1. Colors</h2>
+  <div class="swatches">
+    <div class="swatch"><div style="background:#2563EB"></div><div>--primary-500 #2563EB<br><small>links / focus</small></div></div>
+    <div class="swatch"><div style="background:#1D4ED8"></div><div>--primary-600 #1D4ED8<br><small>buttons</small></div></div>
+    <div class="swatch"><div style="background:#22C55E"></div><div>--success-500 #22C55E<br><small>done</small></div></div>
+    <div class="swatch"><div style="background:#F59E0B"></div><div>--warning-500 #F59E0B<br><small>assigned</small></div></div>
+    <div class="swatch"><div style="background:#0F172A"></div><div>--neutral-900 #0F172A<br><small>text</small></div></div>
+    <div class="swatch"><div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0"></div><div>--neutral-50 #F8FAFC<br><small>page bg</small></div></div>
+  </div>
+
+  <h2>2. Typography</h2>
+  <div class="card"><div style="font-size:1.875rem;font-weight:700">H1 Total $12,450</div><div style="font-size:1.5rem;font-weight:600">H2 Apollo Hospitals, Delhi</div><p style="font-size:1rem">Body — Knee replacement typically requires 5–7 days stay. Our coordinators help with appointments and translation.</p><small>Caption — Grade 8 readability target</small></div>
+
+  <h2>3. Buttons / Inputs / Badges</h2>
+  <div class="card"><button class="btn btn-primary">Request Assistance</button> <button class="btn btn-outline">View Hospitals</button><br><br><input class="input" placeholder="Search Cardiology in Delhi" /><br><span class="badge b-new">new</span> <span class="badge b-assigned">assigned</span> <span class="badge b-done">done</span></div>
+
+  <h2>4. Components</h2>
+  <div class="grid2">
+    <div class="card"><strong>HospitalCard</strong><br>Apollo Hospitals, Delhi<br><small>Cardiology · Orthopedics · Oncology</small><br><span class="chip">ICU</span><span class="chip">Pharmacy</span><span class="chip">Translator desk</span><br><br><button class="btn btn-primary">Request Assistance</button></div>
+    <div class="card"><strong>RequestCard</strong> <span class="badge b-assigned">assigned</span><br><small>translator · French · Apollo Delhi</small><p>Need French translator for cardiology visit on Oct 5.</p><small>Patient: Amina (Kenya) → Coordinator: Ravi</small></div>
+  </div>
+  <div class="card"><strong>EstimateCard</strong><div style="font-size:1.5rem;font-weight:700">$4,000 – $6,000</div><small>Knee Replacement · Apollo Delhi · USD</small><div class="disclaimer">⚠️ Estimate only — not a guarantee of cost or availability. Final cost confirmed by hospital. Medical decisions remain with qualified professionals.</div></div>
+  <div class="grid2">
+    <div class="card"><strong>TreatmentSteps</strong><ul class="steps"><li>Consultation & tests</li><li>Surgery (2–3 hrs)</li><li>5–7 day recovery & physio</li></ul></div>
+    <div class="card"><strong>RatingStars</strong><div class="stars">★★★★☆</div><small>4.0 — 12 ratings · Satisfaction metric (PRD §8)</small></div>
+  </div>
+  <p><small>Open this file directly in browser. Source tokens: PRD.md §2.4, components: PRD §2.4/§3.4.</small></p>
+</div>
+</body>
+</html>
