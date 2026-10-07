@@ -10,6 +10,12 @@ const hospitals = [
   { name: "Max Saket, Delhi", city: "Delhi", state: "Delhi", address: "Saket, Delhi", phone: "+91-11-0000-0004", specialties: ["Orthopedics", "IVF/Fertility"], services: ["International desk"], facilities: ["Lab", "Pharmacy"] },
   { name: "Kokilaben Hospital, Mumbai", city: "Mumbai", state: "Maharashtra", address: "Andheri West, Mumbai", phone: "+91-22-0000-0005", specialties: ["Neurology", "Oncology", "General Surgery"], services: ["Translator"], facilities: ["ICU", "Translator desk"] },
   { name: "Narayana Health, Bengaluru", city: "Bengaluru", state: "Karnataka", address: "Bommasandra, Bengaluru", phone: "+91-80-0000-0006", specialties: ["Cardiology", "Pediatrics"], services: ["Low-cost packages"], facilities: ["ICU", "Lab"] },
+  { name: "Artemis Hospitals, Gurugram", city: "Gurugram", state: "Haryana", address: "Sector 51, Gurugram", phone: "+91-12-0000-0007", specialties: ["Orthopedics", "Cardiology", "Oncology"], services: ["International desk", "Translator"], facilities: ["ICU", "Pharmacy", "Lab"] },
+  { name: "BLK-Max Super Speciality, Delhi", city: "Delhi", state: "Delhi", address: "Pusa Road, Delhi", phone: "+91-11-0000-0008", specialties: ["Oncology", "Gastroenterology", "General Surgery"], services: ["International desk"], facilities: ["ICU", "Lab", "Pharmacy"] },
+  { name: "Manipal Hospitals, Bengaluru", city: "Bengaluru", state: "Karnataka", address: "Old Airport Road, Bengaluru", phone: "+91-80-0000-0009", specialties: ["Nephrology", "Neurology", "Pediatrics"], services: ["Telemedicine", "Translator"], facilities: ["ICU", "Dialysis", "Translator desk"] },
+  { name: "Ruby Hall Clinic, Pune", city: "Pune", state: "Maharashtra", address: "Sassoon Road, Pune", phone: "+91-20-0000-0010", specialties: ["Cardiology", "IVF/Fertility", "General Surgery"], services: ["International desk"], facilities: ["ICU", "Lab"] },
+  { name: "Amrita Hospital, Kochi", city: "Kochi", state: "Kerala", address: "AIMS, Kochi", phone: "+91-48-4000-0011", specialties: ["Cardiology", "Gastroenterology", "Pediatrics"], services: ["Low-cost packages", "Translator"], facilities: ["ICU", "Pharmacy", "Lab"] },
+  { name: "Yashoda Hospitals, Hyderabad", city: "Hyderabad", state: "Telangana", address: "Somajiguda, Hyderabad", phone: "+91-40-0000-0012", specialties: ["Oncology", "Orthopedics", "Neurology"], services: ["International desk", "Visa assistance"], facilities: ["ICU", "Lab", "Pharmacy"] },
 ];
 
 const treatments = [

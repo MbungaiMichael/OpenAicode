@@ -14,6 +14,39 @@ const dict: Record<string, Record<Locale, string>> = {
   requestHelp: {
     en: "Request Assistance", fr: "Demander de l'aide", sw: "Omba Msaada", ar: "طلب المساعدة",
   },
+  hospitals: {
+    en: "Hospitals", fr: "Hôpitaux", sw: "Hospitali", ar: "المستشفيات",
+  },
+  treatments: {
+    en: "Treatments", fr: "Traitements", sw: "Matibabu", ar: "العلاجات",
+  },
+  myRequests: {
+    en: "My Requests", fr: "Mes demandes", sw: "Maombi Yangu", ar: "طلباتي",
+  },
+  support: {
+    en: "Support", fr: "Assistance", sw: "Msaada", ar: "الدعم",
+  },
+  login: {
+    en: "Login", fr: "Connexion", sw: "Ingia", ar: "تسجيل الدخول",
+  },
+  register: {
+    en: "Register", fr: "S'inscrire", sw: "Jisajili", ar: "التسجيل",
+  },
+  statusNew: {
+    en: "new", fr: "nouveau", sw: "mpya", ar: "جديد",
+  },
+  statusAssigned: {
+    en: "assigned", fr: "assigné", sw: "imethibitishwa", ar: "تم التعيين",
+  },
+  statusDone: {
+    en: "done", fr: "terminé", sw: "imekamilika", ar: "تم",
+  },
+  disclaimerShort: {
+    en: "Information only — no diagnosis or guaranteed costs.",
+    fr: "Information uniquement — ni diagnostic ni coûts garantis.",
+    sw: "Taarifa tu — hakuna uchunguzi wala gharama za uhakika.",
+    ar: "معلومات فقط — لا تشخيص ولا تكاليف مضمونة.",
+  },
 };
 
 export function t(key: keyof typeof dict, locale: string) {

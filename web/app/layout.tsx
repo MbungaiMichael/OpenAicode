@@ -16,6 +16,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Nav />
         <div id="main" className="mx-auto max-w-5xl px-4 pb-16">{children}</div>
+        <footer className="border-t border-slate-200 bg-white">
+          <nav className="mx-auto flex max-w-5xl flex-wrap gap-4 px-4 py-4 text-xs text-slate-600" aria-label="Trust pages">
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/disclaimer">Medical Disclaimer</a>
+            <a href="/payments">Payments Guidance</a>
+            <a href="/support">Support</a>
+          </nav>
+        </footer>
       </body>
     </html>
   );
