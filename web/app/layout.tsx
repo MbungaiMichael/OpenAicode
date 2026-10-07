@@ -1,10 +1,19 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
   title: "PatientAssist — International Patient Assistance",
   description: "Hospitals, translators, coordinators, cost estimates, and support for patients traveling to India.",
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "PatientAssist" },
+  icons: { apple: "/icons/apple-touch-icon.png" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1D4ED8",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -14,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:bg-white focus:p-2 focus:text-blue-700">
           Skip to content
         </a>
+        <ServiceWorkerRegister />
         <Nav />
         <div id="main" className="mx-auto max-w-5xl px-4 pb-16">{children}</div>
         <footer className="border-t border-slate-200 bg-white">
