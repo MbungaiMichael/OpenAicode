@@ -1,3 +1,9 @@
 # Local recordings / media (not project code)
 *.mov
 *.avi
+# Real secrets must NEVER be committed (keys, passwords, tokens live in web/.env locally only)
+.env
+.env.local
+# Android signing keys must NEVER be committed
+*.jks
+*.keystore

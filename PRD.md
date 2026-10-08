@@ -29,7 +29,7 @@ A digital platform designed to help international patients access medical care i
 ### 1.4 Architecture
 - **Next.js (App Router) + TypeScript** frontend + API routes in one repo
 - **PostgreSQL (Supabase) + Prisma ORM** as primary data store
-- **NextAuth** for auth (email + phone OTP future)
+- **Auth (implemented):** custom JWT cookie sessions (`bcryptjs` hashing + `jose` signing) with 5 roles + route guards. PRD originally named NextAuth — custom JWT was chosen instead (no provider needed for MVP); NextAuth/OTP remains an optional future step requiring an SMS provider.
 - **Tailwind CSS** for styling, responsive layout
 - **i18n routing** for multi-language UI
 - **File storage (Supabase Storage)** for medical documents / hospital images

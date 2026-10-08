@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth";
+import { resolveUrl } from "@/lib/storage";
 
 export async function GET(req: Request) {
   const s = await getSession();
@@ -12,7 +13,10 @@ export async function GET(req: Request) {
       ? requestId ? { requestId } : {}
       : requestId ? { patientId: s.id, requestId } : { patientId: s.id };
   const docs = await db.medicalDocument.findMany({ where, orderBy: { createdAt: "desc" }, take: 100 });
-  return NextResponse.json(docs);
+  const resolved = await Promise.all(
+    docs.map(async (d) => ({ ...d, fileUrl: await resolveUrl(d.fileUrl).catch(() => d.fileUrl) }))
+  );
+  return NextResponse.json(resolved);
 }
 
 export async function POST(req: Request) {
