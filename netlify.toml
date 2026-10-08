@@ -1,0 +1,14 @@
+# Netlify build config — app lives in web/ (Next.js).
+# After pushing, reconnect/redeploy in Netlify and set env vars in
+# Site settings → Environment variables (NEVER commit real values):
+#   DATABASE_URL (Supabase Postgres — required, SQLite cannot work on Netlify)
+#   NEXTAUTH_SECRET, NEXT_PUBLIC_APP_URL, SUPABASE_URL,
+#   SUPABASE_SERVICE_KEY, STORAGE_BUCKET
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = ".next"
+
+# Cache Next.js build output between deploys
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
